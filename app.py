@@ -1,9 +1,14 @@
-from flask import Flask  
-app = Flask(__name__)    
+from flask import Flask, render_template, url_for
 
-@app.route('/')   
-def main():
-    return 'Hello, world!'
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    app.run()  
+@app.route('/')
+def resume():
+    return render_template('resume.html', title='Резюме')
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html', title='Контакти')
+
+if __name__ == '__main__':
+    app.run(debug=True)

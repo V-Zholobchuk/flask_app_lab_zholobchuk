@@ -1,0 +1,13 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+}
+
+.profile-img {
+    width: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.me {
+    text-align: center;
+}
