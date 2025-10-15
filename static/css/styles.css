@@ -1,13 +1,183 @@
 body {
     font-family: "Segoe UI", sans-serif;
+    background-color: rgb(255, 255, 255);
 }
 
+.contacts{
+    padding-block: 5%;
+}
 .profile-img {
-    width: 250px;
+    width: 330px;
     border-radius: 50%;
     margin-bottom: 20px;
 }
 
-.me {
+.me,.education-section
+,.skills-section
+,.experience{
+    padding-block:  15%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;          
+}
+
+.about_me {
+    display: grid;
+    justify-items: start;      
+    padding: 10px;
+}
+.name {
+    font-size: 5em;
+    position: relative;
+  display: inline-block;
+}
+
+.education-title,
+.skills-title,
+.experience__title {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.name::after,
+.education-title::after,
+.skills-title::after,
+.experience__title::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 87px;
+  height: 4px;
+  background-color: #ffe100;
+}
+
+.education-title::after,
+.skills-title::after,
+.experience__title::after
+{
+      left: 27%;
+        width: 95px;
+}
+.skills-title::after{
+      left: 31%;
+}
+
+.experience__title::after {
+  left: 34%;
+  bottom: -8px;
+}
+
+
+p{
+    font-size: 30px;
+}
+
+.line {
+    padding-bottom: 5%;
+}
+.photo{
+    display: grid;
+    justify-items: end ;
+    padding-right: 13% ;  
+}
+.education-section
+,.skills-section
+,.experience{
+    padding: 0%;
+     padding-bottom: 5%;
+    align-items: center;
+   
+}
+.education-title
+,.skills-title
+,.experience__title{
+    font-size: 30px;
     text-align: center;
+    
+    padding-right: 80px;
+}
+.education-text
+,.skills__category
+,.experience__text{
+    font-size: 17px;
+}
+
+.skills-section
+,.experience{
+    align-items: start;
+}
+
+.skills-title
+,.experience__title{
+        padding-top: 5%;
+}
+
+.skills__list
+,.experience__list{
+    padding: 0%;
+     list-style:none; 
+     padding-inline: 10px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .me,
+  .education-section,
+  .skills-section,
+  .experience {
+    grid-template-columns: 1fr;  
+    grid-template-rows: auto;   
+    padding-block: 10%;
+    text-align: center; 
+  }
+
+.photo{
+    justify-items: center ;
+    padding: 0%;
+}
+
+.education-section
+,.skills-section
+,.experience{
+    padding: 0%;
+     padding-bottom: 5%;
+     align-items: center;
+}
+.education-title
+,.skills-title
+,.experience__title{
+    font-size: 30px;
+    text-align: start;
+    padding: 0%;
+}   
+
+.education-text
+,.skills__category
+,.experience__text
+{
+    padding-top: 25px;
+}
+.education-title::after,
+.skills-title::after,
+.experience__title::after
+{
+      left: 50%;
+}
+}
+
+@media screen and (max-width: 430px) {
+  .me,
+  .education-section,
+  .skills-section,
+  .experience {
+   
+    text-align: start; 
+    
+
+  }
+  
 }

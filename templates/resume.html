@@ -1,28 +1,77 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <section class="me">
-    <h1>Про себе</h1>
-    <img src="{{ url_for('static', filename='../static/images/my_photo.jpg') }}" alt="Фото" class="profile-img">
-    <p>Я — студент, який вивчає веброзробку з використанням Python та Flask.</p>
+    <div class="photo">
+        <img src="{{ url_for('static', filename='../static/images/my_photo.jpg') }}" alt="Фото" class="profile-img">
+    </div>
+    <div class="about_me">
+        <h2 class="name">V_Zholobchuk</h2>
+        <p>Я — студент КНУВС</p>
+    </div>
+
 </section>
 
-<section>
-    <h2>Освіта</h2>
-    <p>Університет ХХХ, спеціальність — Інженерія програмного забезпечення.</p>
+<section class="education-section">
+    <h2 class="education-title">Освіта</h2>
+    <p class="education-text"><strong>Карпацький національний університет імені Василя Стефаника.</strong><br>
+        Спеціальність — <em>Інженерія програмного забезпечення</em><br>
+        2025 — теперішній час</p>
 </section>
 
-<section>
-    <h2>Навички</h2>
-    <ul>
-        <li>Python, Flask</li>
-        <li>HTML, CSS, Bootstrap</li>
-        <li>Git, GitHub</li>
-    </ul>
+<hr class="line">
+
+<section class="skills-section">
+    <h2 class="skills-title">Навички</h2>
+    <div class="skills__categories">
+        <div class="skills__category">
+            <h3 class="skills__subtitle">Мови програмування</h3>
+            <ul class="skills__list">
+                <li class="bi bi-chevron-right">Python</li>
+                <li class="bi bi-chevron-right">Java</li>
+                <li class="bi bi-chevron-right">JavaScript</li>
+            </ul>
+        </div>
+
+        <div class="skills__category">
+            <h3 class="skills__subtitle">Фреймворки</h3>
+            <ul class="skills__list">
+                <li class="bi bi-chevron-right">Flask</li>
+                <li class="bi bi-chevron-right">Aiogram (Telegram Bots)</li>
+                <li class="bi bi-chevron-right">Bootstrap</li>
+                <li class="bi bi-chevron-right">Angular (початковий рівень)</li>
+            </ul>
+        </div>
+
+        <div class="skills__category">
+            <h3 class="skills__subtitle">Інструменти та технології</h3>
+            <ul class="skills__list">
+                <li class="bi bi-chevron-right">Git, GitHub</li>
+                <li class="bi bi-chevron-right">VS Code, PyCharm</li>
+            </ul>
+        </div>
 </section>
 
-<section>
-    <h2>Досвід / Проекти</h2>
-    <p>Розробка Telegram-ботів, невеликих Flask-додатків та мікросервісів.</p>
+<hr class="line">
+
+<section class="experience">
+    <h2 class="experience__title">Досвід та практика</h2>
+    <div class="experience__content">
+        <p class="experience__text">
+            Під час навчання я здобув практичний досвід у розробці невеликих вебдодатків на <strong>Flask</strong>
+            та створенні <strong>Telegram-ботів</strong> для автоматизації простих задач.
+            Активно працюю з API, базами даних і навчаюсь використовувати сучасні інструменти для розгортання
+            застосунків.
+        </p>
+
+        <ul class="experience__list">
+            <li class="bi bi-chevron-right">Розробка Flask-додатків із шаблонами Jinja2</li>
+            <li class="bi bi-chevron-right">Створення Telegram-ботів з використанням бібліотеки Aiogram</li>
+            <li class="bi bi-chevron-right">Інтеграція зовнішніх API (OpenWeather, ChatGPT тощо)</li>
+            <li class="bi bi-chevron-right">Практичні роботи з Java та C# під час навчання</li>
+        </ul>
+    </div>
 </section>
+
 {% endblock %}
