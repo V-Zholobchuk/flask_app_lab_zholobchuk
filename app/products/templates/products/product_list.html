@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>Наші товари</h2>
+
+<ul>
+    {% for product in products %}
+    <li>
+        <strong>{{ product.name }}</strong> - Ціна: {{ product.price }} грн
+    </li>
+    {% else %}
+    <li>Товарів наразі немає.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
