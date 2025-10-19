@@ -1,1 +1,1 @@
-[![Моє портфоліо](static/images/scin)](https://flask-app-lab-zholobchuk.onrender.com/)
+[![Моє портфоліо](images/scin)](https://flask-app-lab-zholobchuk.onrender.com/)
