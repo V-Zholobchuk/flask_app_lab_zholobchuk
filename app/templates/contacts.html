@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
+{% import "_render_field.html" as macro %}
+
+{% block title %}Зв'язатись зі мною{% endblock %}
 
 {% block content %}
-<h1 class="contacts">Контакти</h1>
-<form>
-    <div class="mb-3">
-        <label for="name" class="form-label">Ім’я</label>
-        <input type="text" id="name" class="form-control" placeholder="Ваше ім’я">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Електронна пошта</label>
-        <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
-    </div>
-    <div class="mb-3">
-        <label for="message" class="form-label">Повідомлення</label>
-        <textarea id="message" rows="4" class="form-control" placeholder="Ваше повідомлення"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Надіслати</button>
+<h2> Зв'язатись зі мною</h2>
+
+<form action="{{ url_for('contacts') }}" method="POST" novalidate>
+
+    {{ form.hidden_tag() }}
+
+    {{ macro.render_field(form.name) }}
+    {{ macro.render_field(form.email) }}
+    {{ macro.render_field(form.phone) }}
+    {{ macro.render_field(form.subject) }}
+    {{ macro.render_field(form.message, rows=5) }} {{ form.submit(class="btn btn-primary") }}
 </form>
 {% endblock %}

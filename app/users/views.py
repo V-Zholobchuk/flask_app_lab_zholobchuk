@@ -1,6 +1,7 @@
 from flask import request, redirect, url_for, render_template, session, flash, make_response
 from . import users_bp 
 import datetime
+from app.forms import LoginForm
 
 @users_bp.route("/hi/<string:name>") 
 def greetings(name): 
@@ -16,23 +17,32 @@ def admin():
     return redirect(to_url) 
 
 @users_bp.route('/login', methods=['GET', 'POST'])
+@users_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    VALID_USERNAME = 'user1'
-    VALID_PASSWORD = 'password123'
+    form = LoginForm()
 
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+    if form.validate_on_submit():
+        
+        username = form.username.data
+        password = form.password.data
+        remember = form.remember.data  
+
+        VALID_USERNAME = 'user1'
+        VALID_PASSWORD = 'pass123'
 
         if username == VALID_USERNAME and password == VALID_PASSWORD:
             session['username'] = username
-            flash(f'Вітаємо, {username}! Ви успішно увійшли.', 'success')
+            
+            remember_message = " (з запам'ятовуванням)" if remember else ""
+            flash(f'Вітаємо, {username}! Ви успішно увійшли{remember_message}.', 'success')
+            
             return redirect(url_for('users.profile'))
         else:
-            flash('Неправильні дані! Спробуйте ще раз.', 'danger')
+            flash('Неправильний логін або пароль.', 'danger') 
             return redirect(url_for('users.login'))
 
-    return render_template('users/login.html')
+    
+    return render_template('users/login.html', form=form)
 
 
 @users_bp.route('/profile')
