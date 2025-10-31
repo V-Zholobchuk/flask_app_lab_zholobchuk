@@ -1,0 +1,60 @@
+
+.profile-section {
+    background-color: var(--bs-tertiary-bg); 
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    border: 1px solid var(--bs-border-color);
+}
+
+.profile-section h3,
+.profile-section h4 {
+    border-bottom: 2px solid var(--bs-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cookie-form {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    align-items: flex-end; 
+    margin-bottom: 1.5rem;
+}
+
+.cookie-form div {
+    flex: 1 1 auto; 
+    min-width: 150px; 
+}
+
+.cookie-form label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.cookie-form input[type="text"],
+.cookie-form input[type="number"] {
+    width: 100%;
+}
+
+.cookie-form button {
+    flex-shrink: 0; 
+}
+
+.cookie-table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.cookie-table th {
+    background-color: var(--bs-secondary-bg);
+}
+
+.logout-btn {
+    margin-left: 1rem;
+}
+
+.theme-switcher {
+    margin-top: 1.5rem;
+}

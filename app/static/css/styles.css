@@ -1,15 +1,8 @@
 body {
     font-family: "Segoe UI", sans-serif;
-    background-color: rgb(255, 255, 255);
-}
-
-h2{
   padding-top: 10%;
 }
 
-.contacts{
-    padding-block: 5%;
-}
 .profile-img {
     width: 330px;
     border-radius: 50%;
@@ -19,7 +12,7 @@ h2{
 .me,.education-section
 ,.skills-section
 ,.experience{
-    padding-block:  15%;
+  padding-bottom: 15%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: start;          
