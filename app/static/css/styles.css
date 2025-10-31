@@ -1,6 +1,6 @@
 body {
     font-family: "Segoe UI", sans-serif;
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 .profile-img {
@@ -9,6 +9,10 @@ body {
     margin-bottom: 20px;
 }
 
+
+.me{
+  padding-top: 10%;
+}
 .me,.education-section
 ,.skills-section
 ,.experience{
