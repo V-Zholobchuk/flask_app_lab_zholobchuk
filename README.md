@@ -1,4 +1,2 @@
-Скріншоти роботи браузері
-[![](images/screenshot)](https://flask-app-lab-zholobchuk.onrender.com/)
-[![](images/screenshot2)](https://flask-app-lab-zholobchuk.onrender.com/)
-[![](images/screenshot3)](https://flask-app-lab-zholobchuk.onrender.com/)
+Скріншот роботи браузері
+[![](images/screenshot1)](https://flask-app-lab-zholobchuk.onrender.com/)
