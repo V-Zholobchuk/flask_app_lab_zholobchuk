@@ -1,2 +1,2 @@
 Скріншот роботи браузері
-[![](images/screenshot1)](https://flask-app-lab-zholobchuk.onrender.com/)
+[![](images/screenshot1.png)](https://flask-app-lab-zholobchuk.onrender.com/)
