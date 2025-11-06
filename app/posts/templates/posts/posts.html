@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block title %}Усі пости{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="mb-4">
+        <a href="{{ url_for('posts.add_post') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Add Post
+        </a>
+    </div>
+
+    <h1>Articles</h1>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <img src="{{ url_for('posts.static', filename='img/default.png') }}" class="card-img-top"
+                    alt="Post Image">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ post.category.value }}</h6>
+                    <p class="card-text">{{ post.content | truncate(100) }}</p>
+                    <p class="card-text"><small class="text-muted">Автор: {{ post.author }}</small></p>
+                    <p class="card-text"><small class="text-muted">Опубліковано: {{ post.posted.strftime('%Y-%m-%d')
+                            }}</small></p>
+
+                    <a href="{{ url_for('posts.detail_post', id=post.id) }}" class="btn btn-outline-primary">
+                        View Post
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col">
+            <p>Ще немає жодного поста. Будьте першим!</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

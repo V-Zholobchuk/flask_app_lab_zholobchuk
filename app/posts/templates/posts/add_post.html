@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% import "macros/_render_field.html" as macro %}
+
+{% block title %}
+    {{ title or 'Створити Новий Пост' }}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>{{ title or 'Створити Новий Пост' }}</h2>
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }} {{ macro.render_field(form.title) }}
+            {{ macro.render_field(form.content) }}
+            {{ macro.render_field(form.publish_date) }}
+            {{ macro.render_field(form.category) }}
+            
+            <div class="mb-3 form-check">
+                {{ form.is_active(class="form-check-input") }}
+                {{ form.is_active.label(class="form-check-label") }}
+            </div>
+            
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('posts.get_posts') }}" class="btn btn-secondary">
+                Повернутися до постів
+            </a>
+        </form>
+    </div>
+{% endblock %}
