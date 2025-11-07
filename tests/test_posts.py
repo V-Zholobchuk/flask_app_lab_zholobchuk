@@ -1,6 +1,6 @@
 import unittest
 from app import create_app, db
-from app.posts.models import Post, PostCategory 
+from app.posts.models import Post, PostCategory
 
 class PostTestCase(unittest.TestCase):
     
@@ -26,9 +26,10 @@ class PostTestCase(unittest.TestCase):
             'category': 'tech',
             'publish_date': '2025-11-04T12:00'
         }, follow_redirects=True)
+        response_data = response.data.decode('utf-8')
 
         self.assertEqual(response.status_code, 200, "Сторінка не повернула 'OK' (200)")
-        self.assertIn(b'Post added successfully', response.data, "Flash-повідомлення не знайдено")
+        self.assertIn('Post added successfully', response_data, "Flash-повідомлення не знайдено")
 
         post = db.session.scalar(db.select(Post).filter_by(title="My first test post"))
         self.assertIsNotNone(post, "Пост не було створено в БД")
@@ -36,7 +37,7 @@ class PostTestCase(unittest.TestCase):
         self.assertEqual(post.category, PostCategory.tech)
 
 
-def test_list_posts(self):
+    def test_list_posts(self):
         """
         Тест US02: Перегляд списку всіх постів.
         """
@@ -46,12 +47,13 @@ def test_list_posts(self):
         db.session.commit()
 
         response = self.client.get('/post/')
+        response_data = response.data.decode('utf-8') 
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Pershyj Post", response.data) 
-        self.assertIn(b"Drugyj Post", response.data)
+        self.assertIn("Перший Пост", response_data) 
+        self.assertIn("Другий Пост", response_data) 
 
-def test_view_post_detail(self):
+    def test_view_post_detail(self):
         """
         Тест US03: Перегляд деталей одного поста.
         """
@@ -62,13 +64,12 @@ def test_view_post_detail(self):
         self.assertIsNotNone(post.id)
         
         response = self.client.get(f'/post/{post.id}')
+        response_data = response.data.decode('utf-8') 
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Detal'nyj Post", response.data)
-        self.assertIn(b"Povnyj detal'nyj vmist", response.data)
-
-
-def test_update_post(self):
+        self.assertIn("Детальний Пост", response_data) 
+        self.assertIn("Повний детальний вміст", response_data) 
+    def test_update_post(self):
         """
         Тест US04: Редагування існуючого поста.
         """
@@ -82,15 +83,15 @@ def test_update_post(self):
             'category': 'tech', 
             'publish_date': post.posted.strftime("%Y-%m-%dT%H:%M") 
         }, follow_redirects=True)
-
+        response_data = response.data.decode('utf-8') 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Post onovleno!", response.data) 
+        self.assertIn("Пост оновлено!", response_data) 
 
         updated_post = db.get_or_404(Post, post.id)
         self.assertEqual(updated_post.title, "Новий Оновлений Заголовок")
         self.assertEqual(updated_post.category, PostCategory.tech)
 
-def test_delete_post(self):
+    def test_delete_post(self):
         """
         Тест US05: Видалення існуючого поста.
         """
@@ -101,12 +102,13 @@ def test_delete_post(self):
         post_id = post.id 
 
         response = self.client.post(f'/post/{post_id}/delete', follow_redirects=True)
+        response_data = response.data.decode('utf-8') 
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Post uspilno vydaleno", response.data) 
+        self.assertIn("Пост успішно видалено", response_data) 
 
         deleted_post = db.session.get(Post, post_id)
         self.assertIsNone(deleted_post)
-        
+
 if __name__ == '__main__':
     unittest.main()
