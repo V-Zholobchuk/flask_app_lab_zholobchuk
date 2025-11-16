@@ -1,5 +1,10 @@
 from flask import Blueprint
 
-products_bp = Blueprint('products', __name__, template_folder='templates')
+products_bp = Blueprint(
+    'products',
+    __name__,
+    template_folder='templates',
+    static_folder='static'
+)
 
-from . import views
+from . import views, models 
