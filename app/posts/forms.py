@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, SelectField, SubmitField
 from wtforms.fields import DateTimeLocalField
 from wtforms.validators import DataRequired, Length
 from .models import PostCategory
-from datetime import datetime, UTC 
+from datetime import datetime, UTC
+from wtforms import SelectMultipleField
 
 class PostForm(FlaskForm):
     title = StringField("Title", 
@@ -18,10 +18,16 @@ class PostForm(FlaskForm):
     
     publish_date = DateTimeLocalField('Publish Date', 
                                       format="%Y-%m-%dT%H:%M", 
-                                      default=lambda: datetime.now(UTC)) 
+                                      default=lambda: datetime.now(UTC))
     
     category = SelectField('Category', 
                            choices=[(cat.name, cat.value) for cat in PostCategory], 
                            validators=[DataRequired()])
+
+    
+    author_id = SelectField("Author", coerce=int, validators=[DataRequired()])
+    
+    submit = SubmitField("Submit")
+    tags = SelectMultipleField("Tags", coerce=int)
     
     submit = SubmitField("Submit")
