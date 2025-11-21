@@ -6,13 +6,25 @@
         </button>
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('resume') }}">Резюме</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('contacts') }}">Контакти</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">Резюме</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contacts">Контакти</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('posts.get_posts') }}">Блог</a></li>
 
-                <li class="nav-item"><a class="nav-link" href="/products/">Товари</a></li>
-
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('users.login') }}">Увійти</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('users.profile') }}">Профіль</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.profile') }}">Профіль</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.logout') }}">Вийти</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.login') }}">Увійти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.register') }}">Реєстрація</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

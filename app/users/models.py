@@ -1,4 +1,5 @@
-from app import db
+from app import db, login_manager 
+from flask_login import UserMixin 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer
 from typing import TYPE_CHECKING
@@ -6,7 +7,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.posts.models import Post
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id)) 
+
+class User(db.Model, UserMixin): 
     __tablename__ = 'users'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
