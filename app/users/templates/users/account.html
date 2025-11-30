@@ -1,20 +1,52 @@
 {% extends "base.html" %}
+{% import "macros/_render_field.html" as macro %}
 
 {% block title %}Account{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            User Account
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">Welcome, {{ current_user.username }}!</h2>
-            <p class="card-text"><strong>Email:</strong> {{ current_user.email }}</p>
-            <p class="card-text"><strong>User ID:</strong> {{ current_user.id }}</p>
+<div class="content-section">
+    <div class="unit">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ image_file }}"
+                style="width: 125px; height: 125px; object-fit: cover; margin-right: 20px;">
+            <div class="media-body">
+                <h2 class="account-heading">{{ current_user.username }}</h2>
+                <p class="text-secondary">{{ current_user.email }}</p>
+                {% if current_user.last_seen %}
+                <p class="text-muted"><small>Останній візит: {{ current_user.last_seen | to_kyiv }}</small></p> {% endif
+                %}
+            </div>
 
-            <a href="{{ url_for('users.logout') }}" class="btn btn-danger">Logout</a>
         </div>
+        <a href="{{ url_for('users.change_password') }}" class="btn btn-outline-danger btn-sm">
+            Змінити пароль
+        </a>
     </div>
+    <hr>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Account Info</legend>
+
+            {{ macro.render_field(form.username) }}
+            {{ macro.render_field(form.email) }}
+            {{ macro.render_field(form.about_me, rows=3) }}
+
+            <div class="mb-3">
+                {{ form.picture.label(class="form-label") }}
+                {{ form.picture(class="form-control") }}
+                {% if form.picture.errors %}
+                {% for error in form.picture.errors %}
+                <span class="text-danger">{{ error }}</span><br>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
 </div>
 {% endblock %}

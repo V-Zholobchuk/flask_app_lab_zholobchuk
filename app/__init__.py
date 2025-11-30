@@ -5,7 +5,8 @@ from .config import config
 from sqlalchemy import MetaData 
 from flask_bcrypt import Bcrypt 
 from flask_login import LoginManager 
-
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
     "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -64,5 +65,16 @@ def create_app(config_name='default'):
              flash('Повідомлення успішно відправлено!', 'success')
              return redirect(url_for('contacts'))
          return render_template('contacts.html', title='Контакти', form=form)
+    def format_to_kyiv(dt):
+        if dt is None:
+            return ""
+        
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        
+        kyiv_now = dt.astimezone(ZoneInfo("Europe/Kyiv"))
+        
+        return kyiv_now.strftime('%d.%m.%Y %H:%M')
 
+    app.jinja_env.filters['to_kyiv'] = format_to_kyiv
     return app

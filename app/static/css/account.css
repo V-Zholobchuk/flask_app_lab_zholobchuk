@@ -1,0 +1,17 @@
+.media{
+    display: flex;
+    justify-content:flex-start;
+    gap: 20px;
+}
+
+.text-muted,.text-secondary{
+    font-size: 18px;
+}
+.btn{
+    max-height: 40px;
+    
+}
+.unit{
+    display: flex;
+    justify-content: space-between;
+}
